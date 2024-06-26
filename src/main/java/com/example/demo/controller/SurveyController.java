@@ -10,7 +10,7 @@ import com.example.demo.bao.StoreData;
 import com.example.demo.dto.Attended;
 import com.example.demo.dto.NotAttended;
 
-@Controller
+@Controller("surveyapplication-production.up.railway.app")
 public class SurveyController {
 
 	@Autowired
