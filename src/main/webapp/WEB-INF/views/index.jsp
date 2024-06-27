@@ -32,6 +32,7 @@ function toggleForm() {
     <script>
         $(document).ready(function() {
             // jQuery code to manipulate the DOM
+            $('#submitAttended').hide();
             $("#1").click(function() {
                 $("#2").show(); // Toggle the visibility of paragraphs
             });
@@ -40,6 +41,9 @@ function toggleForm() {
             });
             $("#3").click(function() {
                 $("#4").show(); // Toggle the visibility of paragraphs
+            });
+            $('#4').click(function(){
+            	$('#submitAttended').show();
             });
         });
             $(document).ready(function() {
@@ -94,7 +98,7 @@ function toggleForm() {
   <br><br>
   </div>
   
-  <input type="submit" value="Submit Feedback">
+  <input type="submit" value="Submit Feedback" id='submitAttended'>
 </form:form>
 
 <form:form id="form_not_attended" action="/submitNotAttendedForm" method="post" style="display: none;" modelAttribute="notAttended">
@@ -111,7 +115,7 @@ function toggleForm() {
         <label>Please specify:</label><br>
         <form:input path='reason' name="otherReasonDescription"/><br><br>
     </div>
-    <input type="submit" value="Submit Not Attended Feedback">
+    <input type="submit" value="Submit Not Attended Feedback" >
 </form:form>
 
 
