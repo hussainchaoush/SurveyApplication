@@ -1,7 +1,9 @@
 package com.example.demo.bao;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import org.springframework.stereotype.Service;
 
@@ -13,6 +15,7 @@ import com.example.demo.dto.NotAttended;
 public class StoreData {
 
 	private static Integer UID=101;
+	private static Set<String> ipAddressSet=new HashSet<String>();
 	private static Map<Integer, Attended> attendedMap=new HashMap<Integer,Attended>();
 	private static Map<Integer, NotAttended> notAttendedMap=new HashMap<>();
 	
@@ -42,5 +45,15 @@ public class StoreData {
 	public static void setNotAttendedMap(HashMap<Integer, NotAttended> notAttendedMap) {
 		StoreData.notAttendedMap = notAttendedMap;
 	}
+	public static Set<String> getIpAddressSet() {
+		return ipAddressSet;
+	}
+	public static void setIpAddressSet(Set<String> ipAddressSet) {
+		StoreData.ipAddressSet = ipAddressSet;
+	}
+	public static void setNotAttendedMap(Map<Integer, NotAttended> notAttendedMap) {
+		StoreData.notAttendedMap = notAttendedMap;
+	}
+	
 	
 }
