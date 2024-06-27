@@ -23,7 +23,11 @@ public class SurveyController {
 	
 	@GetMapping(path="/")
 	public String index(Model model,HttpServletRequest request) {
-		String ipAddress = request.getRemoteAddr();
+		String ipAddress = request.getHeader("X-Forwarded-For");
+		if (ipAddress == null || ipAddress.isEmpty()) {
+            ipAddress = request.getRemoteAddr();
+        } else {   ipAddress = ipAddress.split(",")[0].trim();
+        }
 		System.out.println(StoreData.getIpAddressSet());
 		System.out.println(ipAddress);
 		
