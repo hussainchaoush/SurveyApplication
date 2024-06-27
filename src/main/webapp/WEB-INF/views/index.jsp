@@ -28,6 +28,32 @@ function toggleForm() {
     }
 }
 </script>
+ <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // jQuery code to manipulate the DOM
+            $("#1").click(function() {
+                $("#2").show(); // Toggle the visibility of paragraphs
+            });
+            $("#2").click(function() {
+                $("#3").show(); // Toggle the visibility of paragraphs
+            });
+            $("#3").click(function() {
+                $("#4").show(); // Toggle the visibility of paragraphs
+            });
+        });
+            $(document).ready(function() {
+            $('input[name="reason"]').change(function() {
+                var selectedValue = $(this).val();
+                if (selectedValue === 'other') {
+                    $('#otherReason').show();
+                } else {
+                    $('#otherReason').hide();
+                }
+            });
+        });
+    </script>
+
 </head>
 <body>
 
@@ -40,22 +66,25 @@ function toggleForm() {
 <label for="attended_no">No</label><br><br>
 
 <form:form id="form_attended" modelAttribute="attended" action="/submitAttendedForm" method="post">
-  
+  <div id='1'>
   <label>2. Did you participate?</label><br>
   <form:radiobutton path="participated" value="Yes" required="true" /> Yes
   <form:radiobutton path="participated" value="No" /> No
   <br><br>
-  
+  </div>
+   <div id='2' style="display: none;">
   <label>3. Was it engaging?</label><br>
   <form:radiobutton path="engaging" value="Yes" required="true" /> Yes
   <form:radiobutton path="engaging" value="No" /> No
   <br><br>
-  
+  </div>
+   <div id='3' style="display: none;">
   <label>4. Do you continue to participate in such engaging events?</label><br>
   <form:radiobutton path="continueParticipate" value="Yes" required="true" /> Yes
   <form:radiobutton path="continueParticipate" value="No" /> No
   <br><br>
-  
+  </div>
+   <div id='4' style="display: none;">
   <label>5. What would be the overall rating that you would give for this event?</label><br>
   <form:radiobutton path="rating" value="1" required="true" /> 1 - Dissatisfied
   <form:radiobutton path="rating" value="2" /> 2 - Somewhat Dissatisfied
@@ -63,6 +92,7 @@ function toggleForm() {
   <form:radiobutton path="rating" value="4" /> 4 - Satisfied
   <form:radiobutton path="rating" value="5" /> 5 - Extremely Satisfied
   <br><br>
+  </div>
   
   <input type="submit" value="Submit Feedback">
 </form:form>
@@ -77,11 +107,16 @@ function toggleForm() {
     <label for="reason_time_conflict">Had a time conflict</label><br>
     <form:radiobutton path="reason" id="reason_other"  value="other"/>
     <label for="reason_other">Other</label><br><br>
-    
+     <div id="otherReason" style="display: none;">
+        <label>Please specify:</label><br>
+        <form:input path='reason' name="otherReasonDescription"/><br><br>
+    </div>
     <input type="submit" value="Submit Not Attended Feedback">
 </form:form>
 
+
 </body>
+
 </html>
 
 
