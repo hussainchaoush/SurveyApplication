@@ -45,14 +45,18 @@ function toggleForm() {
             $('#4').click(function(){
             	$('#submitAttended').show();
             });
+            $('input[name="reason"]').change(function() {
+                var selectedValue = $(this).val();
+                if (selectedValue != 'other') {
+                    $('#otherReason').show();
+                }
+            });
         });
             $(document).ready(function() {
             $('input[name="reason"]').change(function() {
                 var selectedValue = $(this).val();
                 if (selectedValue === 'other') {
                     $('#otherReason').show();
-                } else {
-                    $('#otherReason').hide();
                 }
             });
         });
