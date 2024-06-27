@@ -3,26 +3,28 @@ package com.example.demo.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.bao.StoreData;
 import com.example.demo.dto.Attended;
 import com.example.demo.dto.NotAttended;
 
-@Controller("surveyapplication-production.up.railway.app")
+@Controller()
 public class SurveyController {
 
 	@Autowired
 	StoreData storeData;
 	
-	@RequestMapping(path="/index")
+	@GetMapping(path="/")
 	public String index(Model model) {
 		model.addAttribute("attended",new Attended());
 		model.addAttribute("notAttended",new NotAttended());
 		return "index";
 	}
-	@RequestMapping("/submitAttendedForm")
+	@PostMapping("/submitAttendedForm")
 	public String submitFeedbackAttended(@ModelAttribute Attended attended) {
 	        // Process feedback for attended users
 		storeData.AddAttendedData(attended);
@@ -30,7 +32,7 @@ public class SurveyController {
 		System.out.println(StoreData.getNotAttendedMap());
 		return "thankYou";
 	}
-	@RequestMapping("/submitNotAttendedForm")
+	@PostMapping("/submitNotAttendedForm")
 	public String submitFeedbackNotAttended(@ModelAttribute NotAttended notAttended) {
 	        // Process feedback for attended users
 		storeData.AddNotAttendedData(notAttended);
@@ -38,4 +40,5 @@ public class SurveyController {
 		System.out.println(StoreData.getNotAttendedMap());
 		return "thankYou";
 	}
+
 }
