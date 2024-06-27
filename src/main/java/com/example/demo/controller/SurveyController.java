@@ -32,25 +32,47 @@ public class SurveyController {
 		System.out.println(ipAddress);
 		
 		if(StoreData.getIpAddressSet().contains(ipAddress))
-			return "thankYou";
-		else
-			StoreData.getIpAddressSet().add(ipAddress);
+			return "Already";
+		
 		model.addAttribute("attended",new Attended());
 		model.addAttribute("notAttended",new NotAttended());
 		return "index";
 	}
 	@PostMapping("/submitAttendedForm")
-	public String submitFeedbackAttended(@ModelAttribute Attended attended) {
+	public String submitFeedbackAttended(@ModelAttribute Attended attended,HttpServletRequest request) {
 	        // Process feedback for attended users
+		String ipAddress = request.getHeader("X-Forwarded-For");
+		if (ipAddress == null || ipAddress.isEmpty()) {
+            ipAddress = request.getRemoteAddr();
+        } else {   ipAddress = ipAddress.split(",")[0].trim();
+        }
+		System.out.println(StoreData.getIpAddressSet());
+		System.out.println(ipAddress);
 		
+		if(StoreData.getIpAddressSet().contains(ipAddress))
+			return "Already";
+		else
+			StoreData.getIpAddressSet().add(ipAddress);
 		storeData.AddAttendedData(attended);
 		System.out.println(StoreData.getAttendedMap());
 		System.out.println(StoreData.getNotAttendedMap());
 		return "thankYou";
 	}
 	@PostMapping("/submitNotAttendedForm")
-	public String submitFeedbackNotAttended(@ModelAttribute NotAttended notAttended) {
+	public String submitFeedbackNotAttended(@ModelAttribute NotAttended notAttended,HttpServletRequest request) {
 	        // Process feedback for attended users
+		String ipAddress = request.getHeader("X-Forwarded-For");
+		if (ipAddress == null || ipAddress.isEmpty()) {
+            ipAddress = request.getRemoteAddr();
+        } else {   ipAddress = ipAddress.split(",")[0].trim();
+        }
+		System.out.println(StoreData.getIpAddressSet());
+		System.out.println(ipAddress);
+		
+		if(StoreData.getIpAddressSet().contains(ipAddress))
+			return "Already";
+		else
+			StoreData.getIpAddressSet().add(ipAddress);
 		storeData.AddNotAttendedData(notAttended);
 		System.out.println(StoreData.getAttendedMap());
 		System.out.println(StoreData.getNotAttendedMap());
