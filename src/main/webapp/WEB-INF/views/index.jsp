@@ -45,21 +45,18 @@ function toggleForm() {
             $('#4').click(function(){
             	$('#submitAttended').show();
             });
-            $('input[name="reason"]').change(function() {
-                var selectedValue = $(this).val();
-                if (selectedValue != 'other') {
-                    $('#otherReason').show();
-                }
-            });
+    
+        $('input[name="reason"]').change(function() {
+            var selectedValue = $(this).val();
+
+            if (selectedValue === 'other') {
+                $('#otherReason').show();
+            } else {
+                $('#otherReason').hide();
+            }
         });
-            $(document).ready(function() {
-            $('input[name="reason"]').change(function() {
-                var selectedValue = $(this).val();
-                if (selectedValue === 'other') {
-                    $('#otherReason').show();
-                }
-            });
         });
+      
     </script>
 
 </head>
@@ -117,7 +114,7 @@ function toggleForm() {
     <label for="reason_other">Other</label><br><br>
      <div id="otherReason" style="display: none;">
         <label>Please specify:</label><br>
-        <form:input path='reason' name="otherReasonDescription"/><br><br>
+        <form:input  id="otherReasonDescription" path="otherReason" /><br><br>
     </div>
     <input type="submit" value="Submit Not Attended Feedback" >
 </form:form>
